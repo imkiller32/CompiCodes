@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int t,n,temp;
+	cin>>t;
+	while(t--)
+	{
+		int out=0;
+		cin>>n;
+		temp=n;
+		if(temp%7==0)
+			out=temp/7;
+		else
+		{
+			while(temp>7)
+			{	
+				out++;
+				temp-=7;
+			}
+			if(temp==7)
+			out++;
+			else if(temp==6)
+			out+=2;
+			else if(temp==5||temp==2||temp==3)
+			out++;
+			else if(temp==4)
+			out+=2;
+			else if(temp==1)
+			out++;
+		}
+		if(n!=1)
+		cout<<out<<endl;
+		else
+		cout<<"-1\n";
+	}
+}
