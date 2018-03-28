@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	string s;
+	int a[10000],i,n,b[10000]={0};
+	cin>>s;
+	n=s.size();
+	for(i=0;i<s.size();i++)
+		a[i]=s[i]-48;
+	
+	if(a[n-1]%2==0)
+	{
+		b[n-1]++;
+	}
+	for(i=n-2;i>=0;i--)
+	{
+		if(a[i]%2==0)
+		{
+			b[i]++;
+		}
+		b[i]=b[i]+b[i+1];
+	}
+	for(i=0;i<n;i++)
+	cout<<b[i]<<" ";
+}
