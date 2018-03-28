@@ -1,0 +1,61 @@
+#include<iostream>
+#define ll long long
+#define p 1000000007
+using namespace std;
+
+ll F[2][2]={{1,1},{1,0}};
+ll M[2][2]={{1,1},{1,0}};
+void Mul(ll M[2][2])
+{
+	ll x=((F[0][0]*M[0][0])%p+(F[0][1]*M[1][0])%p)%p;
+	ll y=((F[0][0]*M[0][1])%p+(F[0][1]*M[1][1])%p)%p;
+	ll z=((F[1][0]*M[0][0])%p+(F[1][1]*M[1][0])%p)%p;
+	ll w=((F[1][0]*M[0][1])%p+(F[1][1]*M[1][1])%p)%p;
+	F[0][0]=x;
+	F[0][1]=y;
+	F[1][0]=z;
+	F[1][1]=w;
+}
+void power(ll n)
+{
+	if(n==0 || n==1) return;
+	power(n/2);Mul(F);
+	if(n&1)
+	{
+		Mul(M);
+	}
+}
+void fib(ll n)
+{
+	if(n==0)
+	return;
+	else
+	power(n);return;
+}
+
+int main()
+{
+	ll n,t,i;
+	cin>>t;
+	for(i=0;i<t;i++)
+	{
+		F[0][0]=F[1][0]=F[0][1]=1;
+		F[1][1]=0;
+		cin>>n;
+		n=n+3;
+		
+	if(n>3)
+	{
+		fib(n-2);
+		cout<<F[0][0]<<"\n";
+		F[0][0]=F[1][0]=F[0][1]=1;
+		F[1][1]=0;
+	}
+	else if(n==2||n==3)
+	cout<<"1\n";
+	else if(n==1)
+	cout<<n-1<<endl;
+	}
+	
+	
+}
