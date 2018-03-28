@@ -1,0 +1,88 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+ll p;
+ll F[3][3]={{1,1,1},{1,0,0},{0,1,0}};
+ll M[3][3]={{1,1,1},{1,0,0},{0,1,0}};
+void Mul(ll M[3][3])
+{
+
+  //here You can write matrix mul. code with complexity O(n^3).
+  
+	ll x=((F[0][0]*M[0][0])%p+(F[0][1]*M[1][0])%p+(F[0][2]*M[2][0])%p)%p;
+	ll y=((F[0][0]*M[0][1])%p+(F[0][1]*M[1][1])%p+(F[0][2]*M[2][1])%p)%p;
+	ll z=((F[0][0]*M[0][2])%p+(F[0][1]*M[1][2])%p+(F[0][2]*M[2][2])%p)%p;
+	
+	ll a=((F[1][0]*M[0][0])%p+(F[1][1]*M[1][0])%p+(F[1][2]*M[2][0])%p)%p;
+	ll b=((F[1][0]*M[0][1])%p+(F[1][1]*M[1][1])%p+(F[1][2]*M[2][1])%p)%p;
+	ll c=((F[1][0]*M[0][2])%p+(F[1][1]*M[1][2])%p+(F[1][2]*M[2][2])%p)%p;
+	
+	ll pq=((F[2][0]*M[0][0])%p+(F[2][1]*M[1][0])%p+(F[2][2]*M[2][0])%p)%p;
+	ll q=((F[2][0]*M[0][1])%p+(F[2][1]*M[1][1])%p+(F[2][2]*M[2][1])%p)%p;
+	ll r=((F[2][0]*M[0][2])%p+(F[2][1]*M[1][2])%p+(F[2][2]*M[2][2])%p)%p;
+	
+	
+	F[0][0]=x;
+	F[0][1]=y;
+	F[0][2]=z;
+
+	F[1][0]=a;
+	F[1][1]=b;
+	F[1][2]=c;
+	
+	F[2][0]=pq;
+	F[2][1]=q;
+	F[2][2]=r;
+}
+void power(ll n)
+{
+	if(n==0 || n==1) return;
+	power(n/2);Mul(F);
+	if(n&1)
+	{
+		Mul(M);
+	}
+}
+void fib(ll n)
+{
+	if(n==0)
+	return;
+	else
+	power(n);return;
+}
+int main()
+{
+	ll t,i,m,temp,a,b,c;
+	cin>>t;
+	a=2;
+	b=4;
+	c=7;
+	p=1000000007;
+	for(i=0;i<t;i++)
+	{
+		F[0][0]=F[0][1]=F[0][2]=F[1][0]=F[2][1]=1;
+		F[1][1]=F[1][2]=F[2][0]=F[2][2]=0;
+		cin>>m;
+		if(m>3)
+		{
+			fib(m-3);
+		//	cout<<F[0][0]<<" "<<F[0][1]<<" "<<F[0][2]<<endl;
+			temp=((F[0][0]%p*c%p)%p+(F[0][1]%p*b%p)%p+(F[0][2]%p*a%p)%p)%p;
+			F[0][0]=F[0][1]=F[0][2]=F[1][0]=F[2][1]=1;
+			F[1][1]=F[1][2]=F[2][0]=F[2][2]=0;
+			if(temp<0)
+			{
+				temp=temp+p;
+				temp=temp%p;
+			}
+			cout<<temp<<endl;
+		}
+		else if(m==1)
+		cout<<a<<endl;
+		else if(m==2)
+		cout<<b<<endl;
+		else if(m==3)
+		cout<<c<<endl;
+		
+	}
+}
