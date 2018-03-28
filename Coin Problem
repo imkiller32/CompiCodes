@@ -1,0 +1,26 @@
+#include<iostream>
+#define inf 1000001
+#define ll long long
+using namespace std;
+int a[inf];
+ll p=1000000007;
+void fib(int n)
+{
+	a[0]=2;
+	a[1]=4;
+	a[2]=7;
+	for(int i=3;i<1000000;i++)
+		a[i]=(a[i-1]%p+a[i-2]%p+a[i-3]%p)%p;
+	return;
+}
+int main()
+{
+	int n,t;
+	fib(1000000);
+	cin>>t;
+	while(t--)
+	{
+		cin>>n;
+		cout<<a[n-1]<<endl;
+	}
+}
