@@ -1,0 +1,32 @@
+#include<iostream>
+#define inf 100000
+using namespace std;
+
+int main()
+{
+    int t,n,q,i,j,l,r;
+    long a[inf];
+    long long b[inf];
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        scanf("%d",&n);
+        if(n)
+        {scanf("%ld",&a[0]);
+        b[0]=a[0];}
+        for(j=1;j<n;j++)
+        {
+            scanf("%ld",&a[j]);
+            b[j]=a[j]+b[j-1];
+        }
+        scanf("%d",&q);
+        for(j=0;j<q;j++)
+        {
+            scanf("%d%d",&l,&r);
+            if(l==1)
+            printf("%lld\n",b[r-1]);
+            else
+            printf("%lld\n",b[r-1]-b[l-2]);
+        }
+    }
+}
