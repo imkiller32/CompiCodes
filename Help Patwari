@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+int main()
+{
+    ll n;
+    ll p=1000000007;
+    cin>>n;
+    ll a=1;
+    ll b=1;
+    for(ll i=2;i<n;i++)
+    {
+        a=(a%p+b%p)%p;
+        swap(a,b);
+    }
+    cout<<b%p;
+}
