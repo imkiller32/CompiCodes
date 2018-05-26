@@ -1,3 +1,10 @@
+/*
+Bottom Spoj
+SINK BASED STRONGLY CONNECTED COMPONENTS
+AUTHOR-Ritesh Aggarwal
+*/
+
+
 #include<bits/stdc++.h>
 #define max_nodes 100001
 using namespace std;
