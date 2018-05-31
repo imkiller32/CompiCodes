@@ -5,6 +5,7 @@ ll cost[1001][1001];
 
 int main()
 {
+	ios::sync_with_stdio(false);
 	ll n,p,i,j,sum=0,now;
 	string s;
 	map<string,ll> m;
